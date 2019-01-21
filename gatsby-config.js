@@ -9,10 +9,18 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `posts`,
+        path: `${__dirname}/src/posts`,
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `images`,
         path: `${__dirname}/src/images`,
       },
     },
+    'gatsby-transformer-remark',
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -27,7 +35,6 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    'gatsby-transformer-remark',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-netlify'
     // this (optional) plugin enables Progressive Web App + Offline functionality
