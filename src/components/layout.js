@@ -1,42 +1,41 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
+import styled from 'styled-components';
+import NavMenu from './navMenu';
 
-import Header from './header'
+
 import './layout.css'
 
-const Layout = ({ children }) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `}
-    render={data => (
-      <>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            padding: `0px 1.0875rem 1.45rem`,
-            paddingTop: 0,
-          }}
-        >
-          {children}    
-        </div>
-        
-      </>
-    )}
-  />
-)
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+const AppWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  @media (max-width: 37.5em) {
+    flex-direction: column;
+  }
+`
+
+const StyledMainPage = styled.div`
+    width: 70%;
+    background: rebeccapurple;
+    height: 100vh;
+    color: white;
+
+    @media (max-width: 37.5em) {
+      flex-direction: column;
+      width: 100%;
+    }
+`
+
+
+const Layout = ({ children }) => (
+  <AppWrapper>
+    <NavMenu />
+    <StyledMainPage>
+      {children}
+    </StyledMainPage>
+  </AppWrapper>
+)
 
 export default Layout

@@ -1,5 +1,14 @@
-import React, {Fragment} from 'react'
+import React from 'react'
+import styled from 'styled-components';
 import { StaticQuery, graphql } from 'gatsby'
+
+const StyledBlogContainer = styled.div`
+  display: flex;
+  flex-direction: columm;
+  margin: 5rem;
+  border: 1px solid white;
+  color: white;
+`
 
 const POST_ARCHIVE_QUERY = graphql`
   query BlogPostArchive {
@@ -20,23 +29,20 @@ const POST_ARCHIVE_QUERY = graphql`
 `
 
 
-const Archive = ({ children }) => (
+const Archive = () => (
   <StaticQuery
     query={POST_ARCHIVE_QUERY}
     render ={({allMarkdownRemark}) => {
       return (
-        <Fragment>
-          <aside>
-            <h2>Archive</h2>  
-            {allMarkdownRemark.edges.map((edge) => {
-              return (
-                <li><a href={`/posts${edge.node.frontmatter.slug}`}>{edge.node.frontmatter.title}</a></li>
-              )
-            })}
-          </aside>
-        </Fragment>
-      )
-      
+        <StyledBlogContainer>
+          <h2>Archive</h2>  
+          {allMarkdownRemark.edges.map((edge) => {
+            return (
+              <li><a href={`/posts${edge.node.frontmatter.slug}`}>{edge.node.frontmatter.title}</a></li>
+            )
+          })}
+        </StyledBlogContainer>
+      )      
     }}
   />
 )
